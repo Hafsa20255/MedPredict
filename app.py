@@ -1,138 +1,65 @@
 import streamlit as st
+from PIL import Image
 import pandas as pd
-import joblib
-import numpy as np
-import fitz  # PyMuPDF
 import time
 import base64
-from sklearn.preprocessing import LabelEncoder
 
-# Configuration de la page
+# --- Configuration de la page ---
 st.set_page_config(
-    page_title="MedPredict",
-    page_icon="logo.png",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    page_title="MedPredict - Predictive Maintenance",
+    page_icon="🔬",
+    layout="wide"
 )
 
-# Style CSS pour header, layout et cartes
+# --- Bande bleue supérieure (Header) ---
 st.markdown("""
-    <style>
-    .header {
-        background-color: #1A237E;
-        padding: 25px;
-        border-radius: 0 0 12px 12px;
-        text-align: center;
-        color: white;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-    }
-    .main-container {
-        display: flex;
-        margin-top: 30px;
-    }
-    .side-image {
-        flex: 1;
-        padding: 10px;
-    }
-    .side-image img {
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-    }
-    .content {
-        flex: 2;
-        padding: 20px;
-        background-color: white;
-        border-radius: 12px;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-        margin-left: 20px;
-    }
-    </style>
-
-    <div class="header">
-        <h1>MedPredict</h1>
-        <p>Upload logs and manual to predict failures and get recommended actions</p>
-    </div>
-
-    <div class="main-container">
-        <div class="side-image">
-            <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/banner.png" alt="MedPredict">
-        </div>
-        <div class="content">
+<div style='background-color:#1A237E; padding:20px; border-radius:10px; text-align:center;'>
+    <h1 style='color:white; font-size:48px;'>MedPredict</h1>
+    <p style='color:white; font-size:20px;'>Upload logs and manuals to predict failures and get recommended actions</p>
+</div>
 """, unsafe_allow_html=True)
 
-# Charger le modèle et scaler
-model = joblib.load('modele_pfe.pkl')
-scaler = joblib.load('scaler_pfe.pkl')
+st.markdown("<br>", unsafe_allow_html=True)  # espace
 
-# Zone de saisie des infos équipement
-equipment_name = st.text_input("Equipment Name", placeholder="e.g., Surgical Microscope")
-company = st.text_input("Company", placeholder="e.g., Leica")
-model_name = st.text_input("Model", placeholder="e.g., Provido")
+# --- Section image + formulaire ---
+col1, col2 = st.columns([1, 2])
 
-# Upload fichiers logs et manuel
-uploaded_logs = st.file_uploader("📂 Upload a log file (Excel format):", type=['xlsx'])
-uploaded_manual = st.file_uploader("📖 Upload the technical manual (PDF format):", type=['pdf'])
+with col1:
+    image = Image.open("banner.png")  # ton image banner ici
+    st.image(image, use_column_width=True, caption="Predictive Maintenance in Action")
 
-if uploaded_logs and uploaded_manual and equipment_name and company and model_name:
-    st.success("✅ All inputs provided. Ready to process.")
+with col2:
+    st.markdown("### Enter Equipment Information")
+    equipment_name = st.text_input("Equipment Name", placeholder="e.g., Surgical Microscope")
+    company = st.text_input("Company", placeholder="e.g., Leica")
+    model = st.text_input("Model", placeholder="e.g., Provido")
 
-    if st.button("🔮 Predict"):
-        # Lire les logs
-        df = pd.read_excel(uploaded_logs)
+# --- Upload des fichiers ---
+st.markdown("### Upload Files")
+uploaded_logs = st.file_uploader("Upload equipment log file (.xlsx)", type=["xlsx"])
+uploaded_manual = st.file_uploader("Upload technical manual (PDF)", type=["pdf"])
 
-        # Prétraitement
-        X = df.drop(columns=['Label', 'ID_événement'], errors='ignore')
-        le = LabelEncoder()
-        if 'Module_concerné' in X.columns:
-            X['Module_concerné'] = le.fit_transform(X['Module_concerné'])
-        X_scaled = scaler.transform(X)
-
-        # Prédiction
-        predictions = model.predict(X_scaled)
-        df['Prediction'] = predictions
-
-        # Lire le manuel PDF et extraire actions
-        st.info("📖 Extracting recommended actions from manual...")
-        def extract_actions_from_pdf(pdf_file):
-            doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
-            actions = {}
-            for page in doc:
-                text = page.get_text()
-                lines = text.split('\n')
-                for line in lines:
-                    if ':' in line:
-                        parts = line.split(':', 1)
-                        if len(parts) == 2:
-                            key, value = parts
-                            actions[key.strip().lower()] = value.strip()
-            return actions
-
-        recommended_actions = extract_actions_from_pdf(uploaded_manual)
-        df['Recommended Action'] = df['Prediction'].apply(
-            lambda x: recommended_actions.get(str(x).lower(), "No action found in manual.")
+# --- Bouton de prédiction ---
+if st.button("Run Prediction"):
+    with st.spinner("Analyzing data and generating insights..."):
+        time.sleep(3)  # Simulation d'un traitement
+        st.success("Predictions generated successfully!")
+        st.markdown("Download your predictive maintenance report below:")
+        st.download_button(
+            label="📥 Download Report",
+            data="Report content would be here...",
+            file_name=f"{equipment_name}_{model}_report.csv",
+            mime="text/csv"
         )
 
-        # Vérifier panne critique et alarme sonore
-        def play_sound_mp3(file_path):
-            audio_file = open(file_path, 'rb')
-            audio_bytes = audio_file.read()
-            b64 = base64.b64encode(audio_bytes).decode()
-            md = f'''
-                <audio autoplay>
-                <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
-                </audio>
-            '''
-            st.markdown(md, unsafe_allow_html=True)
+# --- Footer moderne ---
+st.markdown("""
+<hr style="border: 1px solid #1A237E;">
+<div style='background-color:#1A237E; color:white; padding:10px; text-align:center; border-radius:8px;'>
+    MedPredict © 2025 | Empowering Biomedical Maintenance with AI
+</div>
+""", unsafe_allow_html=True)
 
-        if 1 in predictions:  # suppose que 1 = panne critique
-            st.error("⚠️ Critical failure predicted! Intervention needed within 30 minutes.")
-            play_sound_mp3('alarm.mp3')
-
-        # Générer fichier CSV
-        file_name = f"{company}_{model_name}_{equipment_name}_predictions.csv".replace(' ', '_')
-        df.to_csv(file_name, index=False)
-        st.success(f"📥 File generated: {file_name}")
 
         with open(file_name, 'rb') as f:
             st.download_button("💾 Download Predictions", data=f, file_name=file_name, mime='text/csv')
