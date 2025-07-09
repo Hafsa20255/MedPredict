@@ -17,6 +17,13 @@ st.set_page_config(
 )
 # Bannière en haut
 st.image("banner.png", use_column_width=True)
+st.markdown("""
+<div style='background-color:#1A237E; padding:15px; border-radius:10px;'>
+    <h1 style='color:white; text-align:center;'>MedPredict</h1>
+    <p style='color:white; text-align:center;'>AI-powered predictive maintenance for medical equipment</p>
+</div>
+""", unsafe_allow_html=True)
+
 
 
 # Titre et description
