@@ -44,7 +44,7 @@ logs_file = st.file_uploader("Upload Logs (.csv or .xlsx)", type=["csv", "xlsx"]
 manual_file = st.file_uploader("Upload Technical Manual (.pdf)", type=["pdf"])
 
 # Bouton pour lancer la prédiction
-if st.button("🔮 Run Prediction"):
+if st.button("Run Prediction"):
     if logs_file and manual_file:
         # Simuler un temps de traitement
         with st.spinner("Analyzing data and generating predictions..."):
