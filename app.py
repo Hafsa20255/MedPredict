@@ -16,14 +16,46 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 # Bannière en haut
-st.image("banner.png", use_column_width=True)
+# Bande bleue en haut (header moderne)
 st.markdown("""
-<div style='background-color:#1A237E; padding:15px; border-radius:10px;'>
-    <h1 style='color:white; text-align:center;'>MedPredict</h1>
-    <p style='color:white; text-align:center;'>AI-powered predictive maintenance for medical equipment</p>
-</div>
+    <style>
+    .header-container {
+        background: linear-gradient(90deg, #1A237E, #3949AB);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+    }
+    .header-logo {
+        width: 60px;
+        height: 60px;
+        margin-right: 15px;
+    }
+    .header-text {
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        margin: 0;
+    }
+    .header-subtext {
+        color: white;
+        font-size: 16px;
+        margin: 0;
+    }
+    </style>
+
+    <div class="header-container">
+        <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/logo.png" class="header-logo">
+        <div>
+            <p class="header-text">MedPredict</p>
+            <p class="header-subtext">AI-powered predictive maintenance for medical equipment</p>
+        </div>
+    </div>
 """, unsafe_allow_html=True)
 
+# Image principale stylisée (avec coins arrondis et taille réduite)
+st.image("lab_banner.jpg", use_container_width=True, caption="Advanced AI solutions for healthcare maintenance", output_format="auto")
 
 
 # Titre et description
