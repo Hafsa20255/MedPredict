@@ -56,7 +56,7 @@ st.markdown("""
 
     <div class="main-container">
         <div class="side-image">
-            <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/lab_banner.jpg" alt="MedPredict">
+            <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/banner.png" alt="MedPredict">
         </div>
         <div class="content">
 """, unsafe_allow_html=True)
