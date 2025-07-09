@@ -15,14 +15,15 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-# Titre et description
-st.markup("""
+# Bannière en haut
+st.markdown("""
 <div style='background-color:#1A237E; padding:15px; border-radius:10px;'>
     <h1 style='color:white; text-align:center;'>MedPredict</h1>
     <p style='color:white; text-align:center;'>AI-powered predictive maintenance for medical equipment</p>
 </div>
 """, unsafe_allow_html=True)
+
+# Titre et description
 st.title("AI-powered Predictive Maintenance")
 
 st.markdown(
