@@ -1,42 +1,71 @@
-
-/* 🌟 Style général */
-body, .main {
-    background-color: #f8f9fa;
-    color: #1A237E;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* GENERAL */
+body {
+    background-color: #f4f6f8;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
 }
 
-/* 🔘 Boutons */
+/* HEADER */
+.header {
+    background: linear-gradient(90deg, #1a237e, #3949ab);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.header .logo {
+    height: 60px;
+    margin-right: 20px;
+}
+.header .title h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 2.2em;
+}
+.header .title p {
+    color: #c5cae9;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+/* BUTTON */
 .stButton>button {
-    background-color: #1A237E;
-    color: #ffffff;
-    border-radius: 12px;
-    height: 3em;
-    width: 100%;
-    font-size: 16px;
+    background-color: #1a237e;
+    color: #fff;
     border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1.1em;
     transition: all 0.3s ease;
 }
 .stButton>button:hover {
-    background-color: #3949AB;
+    background-color: #3949ab;
     transform: scale(1.05);
 }
 
-/* 📂 Zone upload */
-.stFileUploader {
-    background-color: #ffffff;
-    border: 2px dashed #1A237E;
-    border-radius: 10px;
-    padding: 10px;
+/* DOWNLOAD BUTTON */
+.download-btn {
+    display: inline-block;
+    background-color: #1a237e;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+.download-btn:hover {
+    background-color: #3949ab;
+    transform: scale(1.05);
 }
 
-/* 📊 DataFrames */
-.stDataFrame {
-    border: 2px solid #1A237E;
-    border-radius: 10px;
+/* FOOTER */
+.footer {
+    text-align: center;
+    color: #888;
+    padding: 15px 0;
+    margin-top: 40px;
+    font-size: 0.9em;
 }
 
-/* 🎯 Titres */
-h1, h2, h3 {
-    color: #1A237E;
-}
