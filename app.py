@@ -16,7 +16,25 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 # Bannière en haut
+st.markdown("""
+    <style>
+    .header-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%; /* légèrement plus large que la bande bleue */
+        height: 120px; /* hauteur fine comme la bande bleue */
+        border-radius: 12px; /* coins arrondis */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* ombre élégante */
+        object-fit: cover; /* pour que l’image garde un bon ratio */
+    }
+    </style>
+    <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/lab_banner.jpg" class="header-img">
+""", unsafe_allow_html=True)
+
 # Bande bleue en haut (header moderne)
+# Image principale stylisée (avec coins arrondis et taille réduite)
+
 st.markdown("""
     <style>
     .header-container {
@@ -52,21 +70,6 @@ st.markdown("""
             <p class="header-subtext">AI-powered predictive maintenance for medical equipment</p>
         </div>
     </div>
-""", unsafe_allow_html=True)
-
-# Image principale stylisée (avec coins arrondis et taille réduite)
-st.markdown("""
-    <style>
-    .banner-img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 70%; /* Réduire la largeur à 70% */
-        border-radius: 15px; /* Coins arrondis */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre douce */
-    }
-    </style>
-    <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/banner.png" class="banner-img">
 """, unsafe_allow_html=True)
 
 
