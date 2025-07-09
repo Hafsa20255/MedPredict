@@ -18,9 +18,15 @@ st.set_page_config(
 
 # Titre et description
 st.title("AI-powered Predictive Maintenance")
+st.markdown("""
+<div style='background-color:#1A237E; padding:15px; border-radius:10px;'>
+    <h1 style='color:white; text-align:center;'>MedPredict</h1>
+    <p style='color:white; text-align:center;'>AI-powered predictive maintenance for medical equipment</p>
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown(
-    "An intelligent web app to predict medical device failures using Machine Learning. "
-    "Upload logs and the device's technical manual to generate actionable maintenance insights."
+    "Upload the equipment logs and technical manual to get predictive maintenance results and actionable recommendations."
 )
 
 # Charger le modèle et le scaler
