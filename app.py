@@ -23,8 +23,9 @@ with open("style.css") as f:
 st.image("logo.png", width=200)
 
 # Titre de l'application
-st.title("Maintenance Prédictive des Équipements Médicaux")
-st.subheader("Prédisez les pannes des dispositifs médicaux grâce à l'IA")
+st.title("AI-powered Predictive Maintenance")
+st.subheader("An intelligent web app to predict medical device failures using Machine Learning.")
+
 
 # Charger le modèle et le scaler
 model = joblib.load('modele_pfe.pkl')
