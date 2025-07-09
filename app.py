@@ -84,7 +84,7 @@ st.markdown("""
 # --------- HEADER ---------
 st.markdown("""
     <div class="main-header">
-        <img src="https://raw.githubusercontent.com/ton-repo/MedPredict/main/logo.png" alt="MedPredict Logo">
+        <img src="https://raw.githubusercontent.com/Hafsa20205/MedPredict/main/logo.png" alt="MedPredict Logo">
         <h1>MedPredict</h1>
     </div>
 """, unsafe_allow_html=True)
@@ -102,7 +102,7 @@ manual_file = st.file_uploader("Upload Technical Manual (PDF)", type=['pdf'])
 st.markdown('</div>', unsafe_allow_html=True)
 
 # --------- PREDICTION BUTTON (stylé) ---------
-if st.button("🔮 Run Prediction", key="predict_btn", help="Click to analyze and predict failures"):
+if st.button("Run Prediction", key="predict_btn", help="Click to analyze and predict failures"):
     if log_file and manual_file:
         st.markdown('<div class="card">', unsafe_allow_html=True)
         st.success("Files uploaded successfully. Processing...")
