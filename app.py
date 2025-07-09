@@ -55,7 +55,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Image principale stylisée (avec coins arrondis et taille réduite)
-st.image("banner.jpg", use_container_width=True, caption="Advanced AI solutions for healthcare maintenance", output_format="auto")
+st.image("banner.png", use_container_width=True, caption="Advanced AI solutions for healthcare maintenance", output_format="auto")
 
 
 # Titre et description
