@@ -84,7 +84,7 @@ st.markdown("""
 # --------- HEADER ---------
 st.markdown("""
     <div class="main-header">
-        <img src="https://raw.githubusercontent.com/Hafsa20205/MedPredict/main/logo.png" alt="MedPredict Logo">
+        <img src="https://raw.githubusercontent.com/hafsa20205/MedPredict/main/logo.png" alt="MedPredict Logo">
         <h1>MedPredict</h1>
     </div>
 """, unsafe_allow_html=True)
