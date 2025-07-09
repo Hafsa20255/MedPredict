@@ -11,7 +11,6 @@ from sklearn.preprocessing import LabelEncoder
 # Configuration de la page Streamlit
 st.set_page_config(
     page_title="MedPredict - Maintenance Prédictive",
-    page_icon="🔬",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -24,7 +23,7 @@ with open("style.css") as f:
 st.image("logo.png", width=200)
 
 # Titre de l'application
-st.title("🔬 MedPredict - Maintenance Prédictive des Équipements Médicaux")
+st.title("Maintenance Prédictive des Équipements Médicaux")
 st.subheader("Prédisez les pannes des dispositifs médicaux grâce à l'IA")
 
 # Charger le modèle et le scaler
