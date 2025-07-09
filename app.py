@@ -3,6 +3,11 @@ from PIL import Image
 import pandas as pd
 import time
 import base64
+import os
+import pygame
+
+# Initialiser Pygame pour le son
+pygame.mixer.init()
 
 # --- Configuration de la page ---
 st.set_page_config(
@@ -52,6 +57,17 @@ if st.button("Run Prediction"):
             mime="text/csv"
         )
 
+    # --- Alarme sonore 30 min avant la panne simulée ---
+    def play_alarm():
+        pygame.mixer.music.load("alarm.mp3")  # Remplace par ton vrai fichier MP3
+        pygame.mixer.music.play()
+        st.warning("🔔 Attention: Predicted failure in 30 minutes! Take action.")
+
+    # Simuler une alerte après 5 secondes pour test
+    st.markdown("⏳ Waiting for upcoming failures...")
+    time.sleep(5)  # en réalité, ça serait un timer 30 minutes
+    play_alarm()
+
 # --- Footer moderne ---
 st.markdown("""
 <hr style="border: 1px solid #1A237E;">
@@ -59,10 +75,3 @@ st.markdown("""
     MedPredict © 2025 | Empowering Biomedical Maintenance with AI
 </div>
 """, unsafe_allow_html=True)
-
-
-        with open(file_name, 'rb') as f:
-            st.download_button("💾 Download Predictions", data=f, file_name=file_name, mime='text/csv')
-
-# Fermer les divs HTML
-st.markdown('</div></div>', unsafe_allow_html=True)
