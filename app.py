@@ -55,7 +55,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Image principale stylisée (avec coins arrondis et taille réduite)
-st.image("banner.png", use_container_width=True, caption="Advanced AI solutions for healthcare maintenance", output_format="auto")
+st.markdown("""
+    <style>
+    .banner-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%; /* Réduire la largeur à 70% */
+        border-radius: 15px; /* Coins arrondis */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre douce */
+    }
+    </style>
+    <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/banner.png" class="banner-img">
+""", unsafe_allow_html=True)
 
 
 # Titre et description
