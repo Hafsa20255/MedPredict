@@ -1,0 +1,42 @@
+
+/* 🌟 Style général */
+body, .main {
+    background-color: #f8f9fa;
+    color: #1A237E;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 🔘 Boutons */
+.stButton>button {
+    background-color: #1A237E;
+    color: #ffffff;
+    border-radius: 12px;
+    height: 3em;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    transition: all 0.3s ease;
+}
+.stButton>button:hover {
+    background-color: #3949AB;
+    transform: scale(1.05);
+}
+
+/* 📂 Zone upload */
+.stFileUploader {
+    background-color: #ffffff;
+    border: 2px dashed #1A237E;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* 📊 DataFrames */
+.stDataFrame {
+    border: 2px solid #1A237E;
+    border-radius: 10px;
+}
+
+/* 🎯 Titres */
+h1, h2, h3 {
+    color: #1A237E;
+}
