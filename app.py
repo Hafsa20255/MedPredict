@@ -7,6 +7,36 @@ import fitz  # PyMuPDF
 import time
 import base64
 from sklearn.preprocessing import LabelEncoder
+# Bande bleue en haut (header moderne)
+st.markdown("""
+    <style>
+    .header {
+        background-color: #1A237E;
+        padding: 30px;
+        border-radius: 0 0 15px 15px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .card {
+        background-color: white;
+        padding: 25px;
+        margin: 30px auto;
+        width: 80%;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    </style>
+
+    <div class="header">
+        <h1>MedPredict</h1>
+        <p>AI-powered predictive maintenance for medical equipment</p>
+    </div>
+""", unsafe_allow_html=True)
+
+# Commencer la carte pour le contenu principal
+st.markdown('<div class="card">', unsafe_allow_html=True)
+
 
 # Configuration de la page Streamlit avec le logo MedPredict
 st.set_page_config(
@@ -15,32 +45,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-# Bannière en haut
-st.markdown("""
-<style>
-.header {
-    background-image: url('https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/banner.png');
-    background-size: cover;
-    background-position: center;
-    padding: 80px 20px;
-    border-radius: 0 0 15px 15px;
-    text-align: center;
-    color: white;
-}
-.header h1 {
-    font-size: 3em;
-    margin-bottom: 0.3em;
-}
-.header p {
-    font-size: 1.5em;
-}
-</style>
-<div class="header">
-    <h1>MedPredict</h1>
-    <p>AI-powered predictive maintenance for medical equipment</p>
-</div>
-""", unsafe_allow_html=True)
-
 
 # Bande bleue en haut (header moderne)
 # Image principale stylisée (avec coins arrondis et taille réduite)
@@ -81,6 +85,7 @@ st.markdown("""
         </div>
     </div>
 """, unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 # Titre et description
