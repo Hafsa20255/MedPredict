@@ -1,3 +1,9 @@
+/* Force background color globally */
+html, body, .stApp {
+    background: linear-gradient(135deg, #1E3C72, #2A5298);
+    color: #f0f0f0;
+}
+
 /* General */
 body {
     font-family: 'Roboto', sans-serif;
