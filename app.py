@@ -4,13 +4,9 @@ from PIL import Image
 # Config de la page avec ton logo en favicon
 st.set_page_config(
     page_title="MedPredict",
-    page_icon="logo.png",  # ton logo ici
+    page_icon="logo.png",
     layout="centered"
 )
-
-# Appliquer le CSS
-with open("style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Afficher le logo et le titre
 logo = Image.open("logo.png")
@@ -19,24 +15,27 @@ st.title("MedPredict - Maintenance Prédictive")
 
 st.write("Bienvenue sur votre application de maintenance prédictive.")
 
-# Upload des fichiers
-st.header("📂 Upload des fichiers")
-log_file = st.file_uploader("Uploader les logs (Excel .xlsx)", type=["xlsx"])
-manual_file = st.file_uploader("Uploader le manuel technique (PDF)", type=["pdf"])
+# 📋 Champs pour informations sur l'équipement
+st.header("📝 Equipment Information")
+equipment_name = st.text_input("Equipment Name")
+company = st.text_input("Company")
+model = st.text_input("Model")
 
-# Vérification upload
-if log_file is not None:
-    st.success("✅ Fichier de logs chargé avec succès.")
+# 📂 Upload des fichiers
+st.header("📂 Upload Files")
+log_file = st.file_uploader("Upload Logs (Excel .xlsx)", type=["xlsx"])
+manual_file = st.file_uploader("Upload Technical Manual (PDF)", type=["pdf"])
 
-if manual_file is not None:
-    st.success("✅ Manuel technique chargé avec succès.")
-
-# Bouton pour analyser
-if st.button("Analyser"):
-    if log_file is not None and manual_file is not None:
-        st.info("📊 Analyse en cours... (fonctionnalité à ajouter)")
+# ✔️ Vérification upload et informations
+if st.button("Submit"):
+    if equipment_name and company and model and log_file and manual_file:
+        st.success("✅ All information and files submitted successfully!")
+        st.write("### 📌 Summary:")
+        st.write(f"**Equipment Name:** {equipment_name}")
+        st.write(f"**Company:** {company}")
+        st.write(f"**Model:** {model}")
     else:
-        st.error("❌ Veuillez uploader les deux fichiers.")
+        st.error("❌ Please fill in all fields and upload both files.")
 
 # Footer
 st.markdown(
