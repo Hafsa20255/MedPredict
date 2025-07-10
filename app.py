@@ -1,78 +1,65 @@
 import streamlit as st
 import pandas as pd
-import time
 import base64
-from datetime import timedelta
 
-# Configuration générale
-st.set_page_config(
-    page_title="MedPredict",
-    page_icon="https://raw.githubusercontent.com/hafsa20255/MedPredict/main/logo.png",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# ----- Page config -----
+st.set_page_config(page_title="MedPredict", layout="wide")
 
-# Charger le style externe
-def load_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# ----- Custom CSS -----
+with open("style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-load_css("style.css")
-
-# Header avec logo
+# ----- Header -----
 st.markdown("""
 <div class="header">
-    <img src="https://raw.githubusercontent.com/hafsa20255/MedPredict/main/logo.png" alt="MedPredict Logo" class="logo">
-    <div class="title">
+    <img src="https://raw.githubusercontent.com/votre_username/votre_repo/main/logo.png" class="logo">
+    <div class="header-text">
         <h1>MedPredict</h1>
         <p>AI-powered predictive maintenance for medical devices</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("---")
+# ----- Main content -----
+col1, col2 = st.columns([1, 2])  # Colonne gauche = stats / droite = inputs
 
-# Formulaire d'informations sur l'équipement
-st.subheader("📋 Upload Equipment Information")
-equipment_name = st.text_input("Equipment Name", placeholder="e.g., Surgical Microscope")
-company = st.text_input("Company", placeholder="e.g., Leica")
-model = st.text_input("Model", placeholder="e.g., M530 OHX")
+# LEFT COLUMN (Stats Dashboard)
+with col1:
+    st.markdown("""
+    <div class="stats-card">
+        <h3>📊 Dashboard Stats</h3>
+        <ul>
+            <li><b>Devices Monitored:</b> 127</li>
+            <li><b>Predictions Made:</b> 452</li>
+            <li><b>Accuracy:</b> 96.7%</li>
+            <li><b>Alerts Triggered:</b> 23</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 
-# Upload des fichiers
-st.subheader("📂 Upload Files")
-logs_file = st.file_uploader("Upload Logs (.csv or .xlsx)", type=["csv", "xlsx"])
-manual_file = st.file_uploader("Upload Technical Manual (.pdf)", type=["pdf"])
+# RIGHT COLUMN (Inputs)
+with col2:
+    st.markdown("<div class='instruction'>📥 Upload logs and technical manual to get predictive insights</div>", unsafe_allow_html=True)
 
-# Bouton pour lancer la prédiction
-if st.button("🔮 Run Prediction"):
-    if logs_file and manual_file:
-        with st.spinner("🔄 Analyzing data and generating predictions..."):
-            time.sleep(3)
-        st.success("✅ Predictions generated successfully!")
+    st.markdown("<div class='input-card'>", unsafe_allow_html=True)
+    equipment_name = st.text_input("Equipment Name", placeholder="e.g., Surgical Microscope")
+    company = st.text_input("Company", placeholder="e.g., Leica")
+    model = st.text_input("Model", placeholder="e.g., Provido")
 
-        # Mini tableau de résultats
-        result_df = pd.DataFrame({
-            "Component": ["Power Supply", "Motor", "Camera"],
-            "Failure Probability": ["85%", "40%", "20%"],
-            "Recommended Action": ["Replace power unit", "Inspect motor bearings", "Calibrate camera"]
-        })
-        st.subheader("📊 Prediction Results")
-        st.dataframe(result_df, use_container_width=True)
+    uploaded_logs = st.file_uploader("Upload Logs (Excel .xlsx)", type=["xlsx"])
+    uploaded_manual = st.file_uploader("Upload Technical Manual (PDF)", type=["pdf"])
 
-        # Télécharger le rapport
-        csv = result_df.to_csv(index=False)
-        b64 = base64.b64encode(csv.encode()).decode()
-        href = f'<a href="data:file/csv;base64,{b64}" download="{equipment_name}_{model}_report.csv" class="download-btn">📥 Download Report</a>'
-        st.markdown(href, unsafe_allow_html=True)
+    if st.button("🔮 Predict Failures"):
+        if uploaded_logs and uploaded_manual:
+            st.success("Prediction completed! Download the report below.")
+            st.download_button("📥 Download Report", "Simulated Report Content", file_name="medpredict_report.pdf")
+        else:
+            st.warning("Please upload both the logs and the technical manual.")
+    st.markdown("</div>", unsafe_allow_html=True)
 
-        # Alarme sonore
-        st.audio("https://raw.githubusercontent.com/hafsa20255/MedPredict/main/alarm.mp3", format="audio/mp3")
-    else:
-        st.error("⚠️ Please upload both the logs and the technical manual.")
-
-# Footer
+# ----- Footer -----
 st.markdown("""
 <div class="footer">
-    MedPredict © 2025 • Empowering Biomedical Maintenance with AI
+    <p> MedPredict © 2025 • Empowering Biomedical Maintenance with AI.</p>
 </div>
 """, unsafe_allow_html=True)
