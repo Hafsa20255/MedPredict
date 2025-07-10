@@ -1,64 +1,26 @@
 body {
-    background-color: #0f3d6e; /* Bleu foncé full page */
-    font-family: 'Segoe UI', sans-serif;
-    color: #FFFFFF; /* Texte en blanc */
+    background-color: #f0f2f6;
+    font-family: 'Arial', sans-serif;
 }
 
-.header {
-    background-color: #ffffff; /* Fond blanc du header */
-    color: #0D1B2A;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.header .logo {
-    height: 50px;
-    margin-right: 15px;
-}
-
-.card {
-    background-color: #FFFFFF; /* Cards blanches */
-    color: #212121;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-h1, h2 {
-    color: #0D1B2A;
-}
-
-.stTextInput label, .stFileUploader label {
-    color: #FFFFFF; /* Titres des champs en blanc */
-    font-weight: bold;
-}
-
-input, .stTextInput > div > div > input {
-    background-color: #f1f1f1;
-    color: #212121;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #1B263B;
-    color: #FFFFFF;
-    border: none;
+.stButton > button {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 8px;
     padding: 10px 20px;
-    border-radius: 5px;
+    border: none;
+    font-size: 16px;
 }
 
-button:hover {
-    background-color: #415A77;
+.stButton > button:hover {
+    background-color: #45a049;
 }
-
-.footer {
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     text-align: center;
-    color: #f1f1f1;
-    margin-top: 40px;
-    font-size: 0.9em;
+    color: #888888;
+    padding: 10px 0;
+    font-size: 14px;
 }
