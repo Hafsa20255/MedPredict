@@ -1,10 +1,7 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import joblib
 import pypdf
-import datetime
-import time
 import base64
 from io import BytesIO
 
@@ -55,14 +52,6 @@ model = st.text_input("Model", placeholder="Provido")
 log_file = st.file_uploader("Upload Logs (Excel .xlsx)", type=["xlsx"])
 manual_file = st.file_uploader("Upload Technical Manual (PDF)", type=["pdf"])
 
-# 📦 Charger modèle et scaler
-try:
-    model_pfe = joblib.load("modele_pfe.pkl")
-    scaler_pfe = joblib.load("scaler_pfe.pkl")
-except Exception as e:
-    st.error("❌ Erreur de chargement du modèle. Vérifiez la compatibilité des versions ou re-sauvegardez le modèle.")
-    st.stop()
-
 # 📑 Lire PDF pour Actions Recommandées
 def extract_actions_from_pdf(pdf_file):
     actions = {}
@@ -76,18 +65,6 @@ def extract_actions_from_pdf(pdf_file):
                     actions[key.strip()] = value.strip()
     return actions
 
-# 🔔 Jouer son d'alarme
-def play_alert():
-    audio_file = open('alert.mp3', 'rb')
-    audio_bytes = audio_file.read()
-    b64 = base64.b64encode(audio_bytes).decode()
-    md = f"""
-    <audio autoplay="true">
-    <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
-    </audio>
-    """
-    st.markdown(md, unsafe_allow_html=True)
-
 # 📥 Télécharger dataframe en Excel
 def to_excel(df):
     output = BytesIO()
@@ -97,7 +74,7 @@ def to_excel(df):
     processed_data = output.getvalue()
     return processed_data
 
-# 🚀 Bouton Submit
+# 🚀 Bouton Submit (sans modèle)
 if st.button("Submit"):
     if equipment_name and company and model and log_file and manual_file:
         st.success("✅ Informations et fichiers chargés avec succès.")
@@ -108,18 +85,11 @@ if st.button("Submit"):
             st.write("✅ Données chargées :")
             st.dataframe(data.head())
 
-            # 🔄 Prétraitement
-            data_scaled = scaler_pfe.transform(data.select_dtypes(include=['float64', 'int64']))
-
-            # 🤖 Prédiction
-            predictions = model_pfe.predict(data_scaled)
-            data['Prediction'] = predictions
-
             # 📑 Actions recommandées
             actions = extract_actions_from_pdf(manual_file)
-            data['Recommended Action'] = data['Prediction'].map(actions)
+            data['Recommended Action'] = "Example action here"  # Placeholder
 
-            st.write("### 🔥 Résultat avec Actions Recommandées :")
+            st.write("### 🔥 Résultat (sans prédiction) :")
             st.dataframe(data)
 
             # 📥 Bouton téléchargement Excel
@@ -130,12 +100,6 @@ if st.button("Submit"):
                 file_name="medpredict_results.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
-
-            # ⏰ Alarme sonore si panne détectée
-            if "Failure" in predictions:
-                st.warning("⚠️ Une panne est détectée ! Alerte dans 30 minutes...")
-                time.sleep(1800)  # 30 minutes réelles
-                play_alert()
 
         except Exception as e:
             st.error(f"❌ Erreur lors de l’analyse : {e}")
