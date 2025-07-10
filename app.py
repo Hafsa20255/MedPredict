@@ -1,33 +1,43 @@
 import streamlit as st
 import pandas as pd
-import base64
+from PIL import Image
 
-# ----- Page config -----
-st.set_page_config(page_title="MedPredict", layout="wide")
+# ----- Page Config -----
+st.set_page_config(page_title="MedPredict", page_icon="logo.png", layout="wide")
 
 # ----- Custom CSS -----
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# ----- Header -----
+# ----- Full Background -----
+st.markdown("""
+<style>
+body {
+    background: linear-gradient(135deg, #1E3C72, #2A5298);
+    color: #f0f0f0;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# ----- Header with Logo -----
 st.markdown("""
 <div class="header">
-    <img src="https://raw.githubusercontent.com/votre_username/votre_repo/main/logo.png" class="logo">
-    <div class="header-text">
+    <img src="https://raw.githubusercontent.com/votre_username/votre_repo/main/logo.png" class="header-logo">
+    <div>
         <h1>MedPredict</h1>
         <p>AI-powered predictive maintenance for medical devices</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# ----- Main content -----
-col1, col2 = st.columns([1, 2])  # Colonne gauche = stats / droite = inputs
+# ----- Main Content -----
+col1, col2 = st.columns([1, 2], gap="large")
 
-# LEFT COLUMN (Stats Dashboard)
+# ----- LEFT: Dashboard Stats -----
 with col1:
     st.markdown("""
-    <div class="stats-card">
-        <h3>📊 Dashboard Stats</h3>
+    <div class="card">
+        <h3>📊 Dashboard</h3>
         <ul>
             <li><b>Devices Monitored:</b> 127</li>
             <li><b>Predictions Made:</b> 452</li>
@@ -37,11 +47,11 @@ with col1:
     </div>
     """, unsafe_allow_html=True)
 
-# RIGHT COLUMN (Inputs)
+# ----- RIGHT: Upload & Inputs -----
 with col2:
-    st.markdown("<div class='instruction'>📥 Upload logs and technical manual to get predictive insights</div>", unsafe_allow_html=True)
+    st.markdown("<div class='card'>", unsafe_allow_html=True)
+    st.markdown("<p class='instruction'>📥 Upload logs and technical manual to get predictive insights</p>", unsafe_allow_html=True)
 
-    st.markdown("<div class='input-card'>", unsafe_allow_html=True)
     equipment_name = st.text_input("Equipment Name", placeholder="e.g., Surgical Microscope")
     company = st.text_input("Company", placeholder="e.g., Leica")
     model = st.text_input("Model", placeholder="e.g., Provido")
@@ -60,6 +70,7 @@ with col2:
 # ----- Footer -----
 st.markdown("""
 <div class="footer">
-    <p> MedPredict © 2025 • Empowering Biomedical Maintenance with AI.</p>
+    <p> MedPredict © 2025 • Empowering Biomedical Maintenance with AI</p>
 </div>
 """, unsafe_allow_html=True)
+
