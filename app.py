@@ -8,18 +8,49 @@ st.set_page_config(
     layout="centered"
 )
 
-# Afficher le logo et le titre
-logo = Image.open("logo.png")
-st.image(logo, width=150)
-st.title("MedPredict - Maintenance Prédictive")
+# 🌟 Bande bleue foncée en haut pleine largeur
+st.markdown(
+    """
+    <style>
+        .header {
+            background-color: #003366;
+            height: 80px;
+            width: 100%;
+            position: relative;
+        }
+        .header-logo {
+            position: absolute;
+            top: 40px; /* Ajusté pour dépasser la moitié du logo */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+    </style>
+    <div class="header"></div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Logo (posé en dehors de la bande)
+st.markdown(
+    """
+    <div class="header-logo">
+        <img src="logo.png" width="150">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Titre
+st.markdown("<h1 style='text-align: center; color: #333333;'>MedPredict - Maintenance Prédictive</h1>", unsafe_allow_html=True)
 
 st.write("Bienvenue sur votre application de maintenance prédictive.")
 
-# 📋 Champs pour informations sur l'équipement
+# 📋 Champs pour informations sur l'équipement avec exemples
 st.header("📝 Equipment Information")
-equipment_name = st.text_input("Equipment Name")
-company = st.text_input("Company")
-model = st.text_input("Model")
+equipment_name = st.text_input("Equipment Name", placeholder="Surgical Microscope")
+company = st.text_input("Company", placeholder="Leica")
+model = st.text_input("Model", placeholder="Provido")
 
 # 📂 Upload des fichiers
 st.header("📂 Upload Files")
@@ -47,3 +78,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
