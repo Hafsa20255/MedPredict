@@ -1,10 +1,7 @@
 import streamlit as st
 from PIL import Image
 
-# Charger le logo
-logo = Image.open("logo.png")
-
-# Page config
+# Config de la page
 st.set_page_config(page_title="MedPredict",
                    page_icon="logo.png",
                    layout="wide")
@@ -13,16 +10,18 @@ st.set_page_config(page_title="MedPredict",
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# Header
+# Header avec logo
 st.markdown("""
 <div class="header">
     <img src="logo.png" class="logo">
-    <h1>MedPredict</h1>
-    <p>AI-powered predictive maintenance for medical devices</p>
+    <div>
+        <h1>MedPredict</h1>
+        <p>AI-powered predictive maintenance for medical devices</p>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Layout : Dashboard + Upload
+# Layout principal
 col1, col2 = st.columns([1, 2])
 
 with col1:
@@ -43,20 +42,17 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
 
-    # Formulaire d’entrée
-    equipment_name = st.text_input("Equipment Name", placeholder="e.g., Surgical Microscope")
-    company = st.text_input("Company", placeholder="e.g., Leica")
-    model = st.text_input("Model", placeholder="e.g., Provido")
+    # Champs de saisie
+    st.text_input("Equipment Name", placeholder="e.g., Surgical Microscope")
+    st.text_input("Company", placeholder="e.g., Leica")
+    st.text_input("Model", placeholder="e.g., Provido")
 
-    # Upload des fichiers
-    uploaded_logs = st.file_uploader("Upload Logs (Excel .xlsx)", type=["xlsx"])
-    uploaded_manual = st.file_uploader("Upload Technical Manual (PDF)", type=["pdf"])
+    # Upload de fichiers
+    st.file_uploader("Upload Logs (Excel .xlsx)", type=["xlsx"])
+    st.file_uploader("Upload Technical Manual (PDF)", type=["pdf"])
 
-    if st.button("🔮 Predict"):
-        if uploaded_logs and uploaded_manual:
-            st.success("Prediction complete! Report generated.")
-        else:
-            st.warning("Please upload both logs and technical manual.")
+    # Bouton
+    st.button("🔮 Predict")
 
 # Footer
 st.markdown("""
