@@ -1,9 +1,8 @@
 
 streamlit
+pillow
 pandas
-scikit-learn
 joblib
-matplotlib
-seaborn
+pypdf
 openpyxl
-PyMuPDF
+xlsxwriter
