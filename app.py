@@ -3,11 +3,11 @@ import streamlit as st
 st.markdown("""
     <style>
         body {
-            background-color: #0D1B2A; /* Bleu foncé élégant */
+            background-color: #0f3d6e; /* Bleu foncé élégant */
             color: #FFFFFF; /* Texte blanc */
         }
         .stApp {
-            background-color: #0D1B2A; /* Appliquer au container principal */
+            background-color: #0f3d6e; /* Appliquer au container principal */
         }
         .css-1d391kg {
             background-color: #FFFFFF; /* Cartes en blanc */
@@ -73,7 +73,7 @@ with col2:
     st.file_uploader("Upload Technical Manual (PDF)", type=["pdf"])
 
     # Bouton
-    st.button("🔮 Predict")
+    st.button("Predict")
 
 # Footer
 st.markdown("""
