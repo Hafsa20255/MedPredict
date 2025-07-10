@@ -90,6 +90,34 @@ def play_audio(file):
         </audio>
     """
     st.markdown(audio_html, unsafe_allow_html=True)
+# ---- FOOTER ----
+st.markdown("""
+    <style>
+    .footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        background-color: #1A237E;
+        color: #ECEFF1;
+        text-align: center;
+        padding: 15px;
+        border-top: 1px solid #3949AB;
+        box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+        font-size: 0.95rem;
+    }
+    .footer a {
+        color: #BBDEFB;
+        text-decoration: none;
+    }
+    .footer a:hover {
+        text-decoration: underline;
+    }
+    </style>
+    <div class="footer">
+       MedPredict © 2025 | Empowering Biomedical Maintenance with AI | <a href="https://med-predict.streamlit.app/" target="_blank">Visit App</a>
+    </div>
+""", unsafe_allow_html=True)
+
 
 # Uncomment this line to enable 30 min timer
 # start_timer(30)
