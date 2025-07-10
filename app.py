@@ -1,14 +1,35 @@
 import streamlit as st
-from PIL import Image
+
+st.markdown("""
+    <style>
+        body {
+            background-color: #0D1B2A; /* Bleu foncé élégant */
+            color: #FFFFFF; /* Texte blanc */
+        }
+        .stApp {
+            background-color: #0D1B2A; /* Appliquer au container principal */
+        }
+        .css-1d391kg {
+            background-color: #FFFFFF; /* Cartes en blanc */
+            color: #0D1B2A; /* Texte sombre pour lisibilité */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .stTextInput > div > div > input {
+            color: #0D1B2A; /* Texte dans les inputs */
+            background-color: #FFFFFF; /* Inputs blancs */
+        }
+        .stFileUploader > div {
+            background-color: #FFFFFF;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Config de la page
 st.set_page_config(page_title="MedPredict",
                    page_icon="logo.png",
                    layout="wide")
-
-# Charger le CSS externe
-with open("style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Header avec logo
 st.markdown("""
