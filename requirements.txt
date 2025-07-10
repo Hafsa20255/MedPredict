@@ -1,4 +1,3 @@
-
 streamlit
 pillow
 pandas
@@ -6,3 +5,4 @@ joblib
 pypdf
 openpyxl
 xlsxwriter
+scikit-learn==1.3.2
