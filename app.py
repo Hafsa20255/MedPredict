@@ -22,26 +22,28 @@ st.markdown(
         .header {
             background-color: #fcf5fc; /* couleur personnalisée */
             height: 200px;
-            width: 100%;
-            position: relative;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw; /* pleine largeur */
+            z-index: -1;
         }
         .logo-container {
-            position: absolute;
-            top: 100px; /* dépasse moitié logo */
-            left: 50px; /* aligné à gauche */
-            z-index: 2;
+            margin-top: 120px;
+            margin-left: 30px;
         }
     </style>
     <div class="header"></div>
     <div class="logo-container">
-        <img src="logo.png" width="150">
+        <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/logo.png" width="150">
     </div>
     """,
     unsafe_allow_html=True
 )
 
 # 🏷️ Titre
-st.markdown("<h1 style='text-align: center; color: #333333;'>MedPredict - Maintenance Prédictive</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: #333333; margin-top:220px;'>MedPredict - Maintenance Prédictive</h1>", unsafe_allow_html=True)
 st.write("Bienvenue sur votre application de maintenance prédictive.")
 
 # 📋 Champs informations
@@ -54,8 +56,12 @@ log_file = st.file_uploader("Upload Logs (Excel .xlsx)", type=["xlsx"])
 manual_file = st.file_uploader("Upload Technical Manual (PDF)", type=["pdf"])
 
 # 📦 Charger modèle et scaler
-model_pfe = joblib.load("modele_pfe.pkl")
-scaler_pfe = joblib.load("scaler_pfe.pkl")
+try:
+    model_pfe = joblib.load("modele_pfe.pkl")
+    scaler_pfe = joblib.load("scaler_pfe.pkl")
+except Exception as e:
+    st.error("❌ Erreur de chargement du modèle. Vérifiez la compatibilité des versions ou re-sauvegardez le modèle.")
+    st.stop()
 
 # 📑 Lire PDF pour Actions Recommandées
 def extract_actions_from_pdf(pdf_file):
