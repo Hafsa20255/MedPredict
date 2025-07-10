@@ -1,78 +1,95 @@
 import streamlit as st
-import pandas as pd
-from PIL import Image
+from datetime import datetime, timedelta
+import base64
+import time
 
-# ----- Page Config -----
-st.set_page_config(page_title="MedPredict", page_icon="logo.png", layout="wide")
+# ---- PAGE CONFIG ----
+st.set_page_config(
+    page_title="MedPredict",
+    page_icon="logo.png",  # Chemin vers ton logo
+    layout="wide"
+)
 
-# ----- Custom CSS -----
+# ---- CUSTOM CSS ----
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-# ----- Full Background -----
+# ---- HEADER ----
 st.markdown("""
-<style>
-body {
-    background: linear-gradient(135deg, #1E3C72, #2A5298);
-    color: #f0f0f0;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# ----- Header with Logo -----
-st.markdown("""
-    <div style='background: linear-gradient(135deg, #1A237E, #283593);
-                padding: 30px; border-radius: 10px; color: white; display: flex; align-items: center;'>
-        <img src="https://raw.githubusercontent.com/hafsa20255/MedPredict/main/logo.png"
-             style='height:60px; margin-right:20px;'>
-        <div>
-            <h1 style='margin:0; font-size:2.5rem;'>MedPredict</h1>
-            <p style='margin:0; font-size:1.2rem;'>AI-powered predictive maintenance for medical devices</p>
+    <div class="header">
+        <img src="https://raw.githubusercontent.com/hafsa20255/MedPredict/main/logo.png" class="logo">
+        <div class="header-text">
+            <h1>MedPredict</h1>
+            <p>AI-powered predictive maintenance for medical devices</p>
         </div>
     </div>
 """, unsafe_allow_html=True)
 
-# ----- Main Content -----
+# ---- LAYOUT ----
 col1, col2 = st.columns([1, 2], gap="large")
 
-# ----- LEFT: Dashboard Stats -----
+# --- DASHBOARD STATS ---
 with col1:
     st.markdown("""
-    <div class="card">
-        <h3>📊 Dashboard</h3>
-        <ul>
-            <li><b>Devices Monitored:</b> 127</li>
-            <li><b>Predictions Made:</b> 452</li>
-            <li><b>Accuracy:</b> 96.7%</li>
-            <li><b>Alerts Triggered:</b> 23</li>
-        </ul>
-    </div>
+        <div class="dashboard">
+            <h3>📊 Dashboard Stats</h3>
+            <ul>
+                <li><b>Devices Monitored:</b> 127</li>
+                <li><b>Predictions Made:</b> 452</li>
+                <li><b>Accuracy:</b> 96.7%</li>
+                <li><b>Alerts Triggered:</b> 23</li>
+            </ul>
+        </div>
     """, unsafe_allow_html=True)
 
-# ----- RIGHT: Upload & Inputs -----
+# --- UPLOAD SECTION ---
 with col2:
-    st.markdown("<div class='card'>", unsafe_allow_html=True)
-    st.markdown("<p class='instruction'>📥 Upload logs and technical manual to get predictive insights</p>", unsafe_allow_html=True)
+    st.markdown("""
+        <div class="upload-section">
+            <h3>📥 Upload logs and technical manual to get predictive insights</h3>
+        </div>
+    """, unsafe_allow_html=True)
 
     equipment_name = st.text_input("Equipment Name", placeholder="e.g., Surgical Microscope")
     company = st.text_input("Company", placeholder="e.g., Leica")
     model = st.text_input("Model", placeholder="e.g., Provido")
+    log_file = st.file_uploader("Upload Logs (.xlsx)", type="xlsx")
+    manual_file = st.file_uploader("Upload Technical Manual (.pdf)", type="pdf")
 
-    uploaded_logs = st.file_uploader("Upload Logs (Excel .xlsx)", type=["xlsx"])
-    uploaded_manual = st.file_uploader("Upload Technical Manual (PDF)", type=["pdf"])
-
-    if st.button("🔮 Predict Failures"):
-        if uploaded_logs and uploaded_manual:
-            st.success("Prediction completed! Download the report below.")
-            st.download_button("📥 Download Report", "Simulated Report Content", file_name="medpredict_report.pdf")
+    if st.button("🔍 Predict Failures"):
+        if log_file and manual_file:
+            st.success("✅ Prediction completed. Download your report below:")
+            st.download_button("📥 Download Report", "Report content here...", file_name=f"{equipment_name}_Prediction_Report.txt")
         else:
-            st.warning("Please upload both the logs and the technical manual.")
-    st.markdown("</div>", unsafe_allow_html=True)
+            st.error("⚠️ Please upload both log file and technical manual.")
 
-# ----- Footer -----
+# ---- ALERT SYSTEM ----
 st.markdown("""
-<div class="footer">
-    <p> MedPredict © 2025 • Empowering Biomedical Maintenance with AI</p>
-</div>
+    <div class="footer">
+        <p>🔔 Next scheduled check: <span id="timer">Loading...</span></p>
+    </div>
 """, unsafe_allow_html=True)
 
+def start_timer(minutes):
+    end_time = datetime.now() + timedelta(minutes=minutes)
+    while datetime.now() < end_time:
+        remaining = end_time - datetime.now()
+        mins, secs = divmod(remaining.seconds, 60)
+        timer_str = f"{mins:02d}:{secs:02d}"
+        st.markdown(f"<script>document.getElementById('timer').innerText='{timer_str}';</script>", unsafe_allow_html=True)
+        time.sleep(1)
+    play_audio("alert.mp3")
+
+def play_audio(file):
+    audio_file = open(file, "rb")
+    audio_bytes = audio_file.read()
+    b64 = base64.b64encode(audio_bytes).decode()
+    audio_html = f"""
+        <audio autoplay>
+        <source src="data:audio/mp3;base64,{b64}" type="audio/mp3">
+        </audio>
+    """
+    st.markdown(audio_html, unsafe_allow_html=True)
+
+# Uncomment this line to enable 30 min timer
+# start_timer(30)
