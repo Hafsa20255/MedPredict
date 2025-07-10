@@ -1,41 +1,39 @@
 import streamlit as st
 from PIL import Image
 
-# Config de la page avec ton logo en favicon
+# Config de la page
 st.set_page_config(
     page_title="MedPredict",
-    page_icon="logo.png",
+    page_icon="logo.png",  # favicon
     layout="centered"
 )
 
-# 🌟 Bande bleue foncée en haut pleine largeur
+# 🌟 Bande bleue foncée pleine largeur
 st.markdown(
     """
     <style>
-        .header {
+        .full-width-header {
             background-color: #003366;
-            height: 80px;
+            height: 120px; /* Plus grand pour donner plus d'espace */
             width: 100%;
-            position: relative;
+            margin: 0;
+            padding: 0;
         }
-        .header-logo {
-            position: absolute;
-            top: 40px; /* Ajusté pour dépasser la moitié du logo */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
+        .logo-container {
+            text-align: center;
+            margin-top: -60px; /* Fait dépasser le logo de la bande */
         }
     </style>
-    <div class="header"></div>
+    <div class="full-width-header"></div>
     """,
     unsafe_allow_html=True
 )
 
-# Logo (posé en dehors de la bande)
+# ✅ Logo (posé en dessous de la bande bleue)
 st.markdown(
     """
-    <div class="header-logo">
-        <img src="logo.png" width="150">
+    <div class="logo-container">
+        <img src="https://raw.githubusercontent.com/Hafsa20255/MedPredict/main/logo.png" width="150">
     </div>
     """,
     unsafe_allow_html=True
@@ -73,7 +71,7 @@ st.markdown(
     """
     <hr style="border:1px solid #f0f0f0">
     <div style="text-align: center; color: #888888; font-size: 14px;">
-        MedPredict © 2025 - Empowering Biomedical Maintenance with AI
+        © MedPredict 2025 - Tous droits réservés
     </div>
     """,
     unsafe_allow_html=True
