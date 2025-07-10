@@ -1,81 +1,48 @@
-body, .stApp {
-    background: linear-gradient(135deg, #1A237E, #283593);
-    color: #ffffff;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
+/* General background */
+body {
+    background-color: #0D47A1; /* Bleu foncé */
+    color: #FFFFFF;
 }
 
-.header {
-    display: flex;
-    align-items: center;
+/* Header card */
+.header-card {
+    background-color: #F5F5F5; /* Blanc cassé */
+    color: #0D47A1; /* Texte bleu foncé */
     padding: 20px;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-}
-
-.header img.logo {
-    height: 60px;
-    margin-right: 15px;
-}
-
-.header-text h1 {
-    margin: 0;
-    font-size: 2.2rem;
-    color: #ffffff;
-}
-
-.header-text p {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #cfd8dc;
-}
-
-.dashboard, .upload-section {
-    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Dashboard card */
+.dashboard-card {
+    background-color: #F5F5F5; /* Blanc cassé */
+    color: #0D47A1;
     padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
-.dashboard h3, .upload-section h3 {
-    color: #ffffff;
+/* Upload card */
+.upload-card {
+    background-color: #F5F5F5; /* Blanc cassé */
+    color: #0D47A1;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
-.dashboard ul {
-    list-style: none;
-    padding: 0;
+/* Inputs and upload buttons */
+input, .stFileUploader, .stButton {
+    background-color: #FFFFFF !important;
+    color: #0D47A1 !important;
 }
 
-.dashboard li {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-    color: #eceff1;
-}
-
-input, .stFileUploader, button {
-    border-radius: 8px !important;
-    padding: 10px !important;
-    margin-bottom: 10px;
-    color: #1A237E;
-}
-
-button {
-    background-color: #3949AB !important;
-    color: white !important;
-    border: none;
-}
-
-button:hover {
-    background-color: #5C6BC0 !important;
-}
-
+/* Footer */
 .footer {
-    margin-top: 2rem;
+    margin-top: 50px;
     text-align: center;
-    color: #cfd8dc;
-    font-size: 1rem;
+    color: #ECEFF1;
+    font-size: 0.9rem;
+    padding: 15px;
 }
