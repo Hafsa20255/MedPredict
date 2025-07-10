@@ -21,13 +21,15 @@ body {
 
 # ----- Header with Logo -----
 st.markdown("""
-<div class="header">
-    <img src="https://raw.githubusercontent.com/votre_username/votre_repo/main/logo.png" class="header-logo">
-    <div>
-        <h1>MedPredict</h1>
-        <p>AI-powered predictive maintenance for medical devices</p>
+    <div style='background: linear-gradient(135deg, #1A237E, #283593);
+                padding: 30px; border-radius: 10px; color: white; display: flex; align-items: center;'>
+        <img src="https://raw.githubusercontent.com/TON_USERNAME/TON_REPO/main/logo.png"
+             style='height:60px; margin-right:20px;'>
+        <div>
+            <h1 style='margin:0; font-size:2.5rem;'>MedPredict</h1>
+            <p style='margin:0; font-size:1.2rem;'>AI-powered predictive maintenance for medical devices</p>
+        </div>
     </div>
-</div>
 """, unsafe_allow_html=True)
 
 # ----- Main Content -----
