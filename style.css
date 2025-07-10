@@ -1,81 +1,81 @@
-/* Force background color globally */
-html, body, .stApp {
-    background: linear-gradient(135deg, #1E3C72, #2A5298);
-    color: #f0f0f0;
-}
-
-/* General */
-body {
-    font-family: 'Roboto', sans-serif;
+body, .stApp {
+    background: linear-gradient(135deg, #1A237E, #283593);
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* Header */
 .header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin: 30px 0;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.header img.logo {
+    height: 60px;
+    margin-right: 15px;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 2.2rem;
     color: #ffffff;
 }
 
-.header-logo {
-    height: 70px;
-}
-
-.header h1 {
+.header-text p {
     margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    color: #cfd8dc;
 }
 
-.header p {
-    margin: 0;
-    font-size: 1.2rem;
-    opacity: 0.85;
-}
-
-/* Cards */
-.card {
+.dashboard, .upload-section {
     background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.card h3 {
-    color: #FFFFFF;
-    margin-top: 0;
-    font-size: 1.5rem;
+.dashboard h3, .upload-section h3 {
+    color: #ffffff;
 }
 
-.card ul {
+.dashboard ul {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
 }
 
-.card li {
-    margin: 10px 0;
+.dashboard li {
+    margin-bottom: 10px;
     font-size: 1.1rem;
-    color: #E3F2FD;
+    color: #eceff1;
 }
 
-/* Inputs */
-.instruction {
-    font-size: 1.1rem;
-    color: #BBDEFB;
-    margin-bottom: 15px;
-    font-weight: bold;
+input, .stFileUploader, button {
+    border-radius: 8px !important;
+    padding: 10px !important;
+    margin-bottom: 10px;
+    color: #1A237E;
 }
 
-/* Footer */
+button {
+    background-color: #3949AB !important;
+    color: white !important;
+    border: none;
+}
+
+button:hover {
+    background-color: #5C6BC0 !important;
+}
+
 .footer {
+    margin-top: 2rem;
     text-align: center;
-    margin: 50px 0 10px;
-    color: #B0BEC5;
-    font-size: 0.9rem;
+    color: #cfd8dc;
+    font-size: 1rem;
 }
-
