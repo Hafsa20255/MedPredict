@@ -23,7 +23,7 @@ body {
 st.markdown("""
     <div style='background: linear-gradient(135deg, #1A237E, #283593);
                 padding: 30px; border-radius: 10px; color: white; display: flex; align-items: center;'>
-        <img src="https://raw.githubusercontent.com/TON_USERNAME/TON_REPO/main/logo.png"
+        <img src="https://raw.githubusercontent.com/hafsa20255/MedPredict/main/logo.png"
              style='height:60px; margin-right:20px;'>
         <div>
             <h1 style='margin:0; font-size:2.5rem;'>MedPredict</h1>
